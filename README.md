@@ -7,10 +7,8 @@ The repo serves as a very quick and easy launch point to build and deploy a stat
 ## Instructions
 
 1. clone this repo or copy the contents
-2. create an `index.html` file
-3. open `index.html` in your browser (or run a local http server from the root folder)
-4. vibe code something beautiful
-5. push to Github and configure repo settings to publish a page from the main branch root folder
+2. edit `index.html` and vibe code something beautiful
+3. push to Github and configure repo settings to publish a page from the main branch root folder
 
 ## Files
 
@@ -29,12 +27,6 @@ The AlpineJS framework (v3.x) - downloaded locally from CDN for offline developm
 
 ### `tailwind.js`
 Tailwind CSS browser version (v4) - provides utility-first CSS styling without requiring a build process.
-
-## Getting Started
-
-1. Clone this repository
-2. Open `index.html` in your web browser
-3. No build process or server required - everything runs in the browser!
 
 ## Features Demonstrated
 
