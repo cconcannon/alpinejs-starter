@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS Complete Functionality Demo</title>
+    <script src="./tailwind.js"></script>
+    <script defer src="./alpine.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">AlpineJS Complete Functionality Demo</h1>
+
+        <!-- x-data: Basic Reactive Data -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ message: 'I ❤️ Alpine', count: 0 }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-data: Reactive Data</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <p class="text-lg mb-2" x-text="message"></p>
+                <p class="text-lg mb-4">Count: <span class="font-mono font-bold text-blue-600" x-text="count"></span></p>
+                <div class="space-x-2">
+                    <button @click="count++" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">Increment</button>
+                    <button @click="count--" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">Decrement</button>
+                    <button @click="count = 0" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- x-on/@click: Event Handling -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ clicks: 0, lastEvent: 'None' }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-on/@click: Event Handling</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <p class="text-lg mb-2">Clicks: <span class="font-mono font-bold text-blue-600" x-text="clicks"></span></p>
+                <p class="text-lg mb-4">Last Event: <span class="font-mono text-purple-600" x-text="lastEvent"></span></p>
+                <div class="space-x-2">
+                    <button @click="clicks++; lastEvent = 'Regular Click'" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">Click Me</button>
+                    <button @dblclick="clicks += 2; lastEvent = 'Double Click'" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors">Double Click Me</button>
+                    <button @mouseenter="lastEvent = 'Mouse Enter'" @mouseleave="lastEvent = 'Mouse Leave'" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors">Hover Me</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- x-text: Dynamic Text Content -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ name: 'World', greeting: 'Hello' }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-text: Dynamic Text Content</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <p class="text-2xl font-semibold mb-4 text-gray-800" x-text="`${greeting}, ${name}!`"></p>
+                <div class="flex gap-4 items-center">
+                    <input type="text" x-model="name" placeholder="Enter your name" class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select x-model="greeting" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option>Hello</option>
+                        <option>Hi</option>
+                        <option>Greetings</option>
+                        <option>Welcome</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- x-show: Conditional Visibility -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ showDetails: false, showAdvanced: false }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-show: Conditional Visibility</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <button @click="showDetails = !showDetails" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">Toggle Details</button>
+                <div x-show="showDetails" class="mt-4 p-4 bg-blue-50 rounded">
+                    <p class="text-gray-700 mb-2">These are the details that can be toggled!</p>
+                    <button @click="showAdvanced = !showAdvanced" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded text-sm transition-colors">Toggle Advanced</button>
+                    <div x-show="showAdvanced" class="mt-2 ml-4 p-3 bg-purple-50 rounded">
+                        <p class="text-gray-600 text-sm">Advanced nested content!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- x-model: Two-way Data Binding -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ 
+            text: '', 
+            email: '', 
+            color: '#3b82f6',
+            range: 50,
+            checkbox: false,
+            radio: 'option1'
+        }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-model: Two-way Data Binding</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <input type="text" x-model="text" placeholder="Type something..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p class="mt-2 text-sm text-gray-600">Text: <span class="font-mono" x-text="text"></span></p>
+                    </div>
+                    <div>
+                        <input type="email" x-model="email" placeholder="Enter email..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p class="mt-2 text-sm text-gray-600">Email: <span class="font-mono" x-text="email"></span></p>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <input type="color" x-model="color" class="h-10 w-20">
+                            <p class="text-sm text-gray-600">Color: <span class="font-mono" x-text="color" :style="`color: ${color}`"></span></p>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="range" x-model="range" min="0" max="100" class="w-full">
+                        <p class="mt-2 text-sm text-gray-600">Range: <span class="font-mono" x-text="range"></span>%</p>
+                    </div>
+                    <div>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" x-model="checkbox" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+                            <span>Check me</span>
+                        </label>
+                        <p class="mt-2 text-sm text-gray-600">Checked: <span class="font-mono" x-text="checkbox"></span></p>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" x-model="radio" value="option1" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span>Option 1</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" x-model="radio" value="option2" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span>Option 2</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" x-model="radio" value="option3" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                            <span>Option 3</span>
+                        </label>
+                        <p class="text-sm text-gray-600">Selected: <span class="font-mono" x-text="radio"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- x-for: List Rendering with Filtering -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ 
+            search: '',
+            todos: [
+                { id: 1, text: 'Learn AlpineJS', completed: true },
+                { id: 2, text: 'Build a project', completed: false },
+                { id: 3, text: 'Master x-for directive', completed: false },
+                { id: 4, text: 'Understand reactivity', completed: true }
+            ],
+            get filteredTodos() {
+                return this.todos.filter(todo => 
+                    todo.text.toLowerCase().includes(this.search.toLowerCase())
+                );
+            },
+            newTodo: '',
+            addTodo() {
+                if (this.newTodo.trim()) {
+                    this.todos.push({
+                        id: Date.now(),
+                        text: this.newTodo,
+                        completed: false
+                    });
+                    this.newTodo = '';
+                }
+            },
+            removeTodo(id) {
+                this.todos = this.todos.filter(todo => todo.id !== id);
+            }
+        }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">x-for: List Rendering with Filtering</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="mb-4 space-y-2">
+                    <input type="text" x-model="search" placeholder="Search todos..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div class="flex gap-2">
+                        <input type="text" x-model="newTodo" placeholder="Add new todo..." @keyup.enter="addTodo" class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button @click="addTodo" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">Add Todo</button>
+                    </div>
+                </div>
+                <template x-for="todo in filteredTodos" :key="todo.id">
+                    <div class="flex items-center justify-between p-3 mb-2 bg-white rounded border border-gray-200">
+                        <label class="flex items-center space-x-2" :class="todo.completed && 'line-through opacity-60'">
+                            <input type="checkbox" x-model="todo.completed" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500">
+                            <span x-text="todo.text"></span>
+                        </label>
+                        <button @click="removeTodo(todo.id)" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors">Remove</button>
+                    </div>
+                </template>
+                <p x-show="filteredTodos.length === 0" class="text-gray-500 text-center py-4">No todos found!</p>
+            </div>
+        </div>
+
+        <!-- Advanced: Computed Properties & Complex Interactions -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ 
+            items: [
+                { name: 'Apple', price: 1.99, quantity: 0 },
+                { name: 'Banana', price: 0.99, quantity: 0 },
+                { name: 'Orange', price: 2.49, quantity: 0 },
+                { name: 'Mango', price: 3.99, quantity: 0 }
+            ],
+            get total() {
+                return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+            },
+            get itemCount() {
+                return this.items.reduce((sum, item) => sum + item.quantity, 0);
+            }
+        }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Advanced: Computed Properties</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <h3 class="text-lg font-semibold mb-3">Shopping Cart</h3>
+                <template x-for="item in items" :key="item.name">
+                    <div class="flex items-center justify-between py-2 border-b border-gray-200">
+                        <span class="w-24 font-medium" x-text="item.name"></span>
+                        <span class="w-16 text-gray-600" x-text="`$${item.price}`"></span>
+                        <div class="flex items-center space-x-2">
+                            <button @click="item.quantity = Math.max(0, item.quantity - 1)" class="bg-gray-300 hover:bg-gray-400 text-gray-700 w-8 h-8 rounded transition-colors">-</button>
+                            <span class="w-8 text-center font-mono" x-text="item.quantity"></span>
+                            <button @click="item.quantity++" class="bg-gray-300 hover:bg-gray-400 text-gray-700 w-8 h-8 rounded transition-colors">+</button>
+                        </div>
+                    </div>
+                </template>
+                <div class="mt-4 pt-4 border-t-2 border-gray-300">
+                    <p class="text-lg font-semibold">Total Items: <span class="font-mono text-blue-600" x-text="itemCount"></span></p>
+                    <p class="text-lg font-semibold">Total Price: <span class="font-mono text-green-600">$<span x-text="total"></span></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown with @click.outside -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ dropdownOpen: false }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Dropdown with @click.outside</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="relative inline-block">
+                    <button @click="dropdownOpen = !dropdownOpen" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">
+                        Toggle Dropdown
+                    </button>
+                    <div x-show="dropdownOpen" @click.outside="dropdownOpen = false" class="absolute mt-2 bg-white rounded-md shadow-lg z-10 min-w-[200px]">
+                        <div class="p-3">
+                            <p class="text-sm text-gray-600 mb-2">Click outside to close!</p>
+                            <a href="#" @click.prevent="alert('Option 1 clicked'); dropdownOpen = false" class="block py-2 px-3 hover:bg-gray-100 rounded">Option 1</a>
+                            <a href="#" @click.prevent="alert('Option 2 clicked'); dropdownOpen = false" class="block py-2 px-3 hover:bg-gray-100 rounded">Option 2</a>
+                            <a href="#" @click.prevent="alert('Option 3 clicked'); dropdownOpen = false" class="block py-2 px-3 hover:bg-gray-100 rounded">Option 3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Example -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ activeTab: 'tab1' }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tabs Navigation</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="flex space-x-1 mb-4">
+                    <button @click="activeTab = 'tab1'" :class="activeTab === 'tab1' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'" class="px-4 py-2 rounded-t-lg transition-colors">Tab 1</button>
+                    <button @click="activeTab = 'tab2'" :class="activeTab === 'tab2' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'" class="px-4 py-2 rounded-t-lg transition-colors">Tab 2</button>
+                    <button @click="activeTab = 'tab3'" :class="activeTab === 'tab3' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'" class="px-4 py-2 rounded-t-lg transition-colors">Tab 3</button>
+                </div>
+                <div class="bg-white p-4 rounded-b-lg">
+                    <div x-show="activeTab === 'tab1'">
+                        <h3 class="text-lg font-semibold mb-2">Tab 1 Content</h3>
+                        <p class="text-gray-600">This is the content for the first tab.</p>
+                    </div>
+                    <div x-show="activeTab === 'tab2'">
+                        <h3 class="text-lg font-semibold mb-2">Tab 2 Content</h3>
+                        <p class="text-gray-600">This is the content for the second tab.</p>
+                    </div>
+                    <div x-show="activeTab === 'tab3'">
+                        <h3 class="text-lg font-semibold mb-2">Tab 3 Content</h3>
+                        <p class="text-gray-600">This is the content for the third tab.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Example -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ modalOpen: false, modalTitle: '', modalContent: '' }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Modal Dialog</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="space-x-2">
+                    <button @click="modalOpen = true; modalTitle = 'Welcome!'; modalContent = 'This is a modal dialog created with AlpineJS.'" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition-colors">
+                        Open Modal
+                    </button>
+                    <button @click="modalOpen = true; modalTitle = 'Information'; modalContent = 'AlpineJS makes it easy to create interactive components!'" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors">
+                        Open Info Modal
+                    </button>
+                </div>
+                
+                <div x-show="modalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click="modalOpen = false" style="display: none;" x-transition>
+                    <div class="bg-white p-6 rounded-lg max-w-lg w-full mx-4" @click.stop>
+                        <h3 class="text-xl font-semibold mb-3" x-text="modalTitle"></h3>
+                        <p class="text-gray-600 mb-4" x-text="modalContent"></p>
+                        <button @click="modalOpen = false" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Gallery with Lightbox -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ 
+            selectedImage: null,
+            images: [
+                'https://picsum.photos/200/200?random=1',
+                'https://picsum.photos/200/200?random=2',
+                'https://picsum.photos/200/200?random=3',
+                'https://picsum.photos/200/200?random=4',
+                'https://picsum.photos/200/200?random=5',
+                'https://picsum.photos/200/200?random=6'
+            ]
+        }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Image Gallery</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
+                    <template x-for="(image, index) in images" :key="index">
+                        <img :src="image" @click="selectedImage = image" alt="Gallery image" class="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity">
+                    </template>
+                </div>
+                
+                <div x-show="selectedImage" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50" @click="selectedImage = null" style="display: none;">
+                    <img :src="selectedImage" class="max-w-full max-h-full rounded-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Validation Example -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6" x-data="{ 
+            form: {
+                name: '',
+                email: '',
+                message: ''
+            },
+            errors: {},
+            validate() {
+                this.errors = {};
+                if (!this.form.name) this.errors.name = 'Name is required';
+                if (!this.form.email) this.errors.email = 'Email is required';
+                else if (!/\S+@\S+\.\S+/.test(this.form.email)) this.errors.email = 'Email is invalid';
+                if (!this.form.message) this.errors.message = 'Message is required';
+                return Object.keys(this.errors).length === 0;
+            },
+            submit() {
+                if (this.validate()) {
+                    alert('Form submitted successfully!');
+                    this.form = { name: '', email: '', message: '' };
+                }
+            }
+        }">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Form with Validation</h2>
+            <div class="bg-gray-50 rounded p-4">
+                <form @submit.prevent="submit" class="space-y-4">
+                    <div>
+                        <input type="text" x-model="form.name" placeholder="Your name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p x-show="errors.name" x-text="errors.name" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <div>
+                        <input type="email" x-model="form.email" placeholder="Your email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p x-show="errors.email" x-text="errors.email" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <div>
+                        <textarea x-model="form.message" placeholder="Your message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <p x-show="errors.message" x-text="errors.message" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded transition-colors">Submit Form</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
