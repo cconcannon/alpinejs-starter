@@ -1,10 +1,20 @@
 # AlpineJS Starter
 
-A comprehensive demonstration of AlpineJS functionality with Tailwind CSS styling. This project showcases all core AlpineJS directives and features in a single, interactive page.
+This is a starter repo for building web pages out of plain old HTML, JavaScript, and CSS. There's no build process and there are no external dependencies. The `elements.html` page provides examples of the kinds of elements that can be built using the vendored [AlpineJS](https://alpinejs.dev/) and [Tailwind CSS](https://tailwindcss.com/) frameworks.
+
+The repo serves as a very quick and easy launch point to build and deploy a static single-page site on Github Pages in minutes with the help of an agentic coding tool. There's enough context already here, and modern LLM's are sufficiently knowledgeable in their training corpus for the LLM to make informed decisions about using HTML, AlpineJS, and Tailwind CSS for element layout, styling, and reactivity.
+
+## Instructions
+
+1. clone this repo or copy the contents
+2. create an `index.html` file
+3. open `index.html` in your browser (or run a local http server from the root folder)
+4. vibe code something beautiful
+5. push to Github and configure repo settings to publish a page from the main branch root folder
 
 ## Files
 
-### `index.html`
+### `elements.html`
 The main demonstration page containing examples of all AlpineJS features:
 - **x-data**: Reactive data management
 - **x-on/@click**: Event handling (click, double-click, hover)
