@@ -10,6 +10,10 @@ The repo serves as a very quick and easy launch point to build and deploy a stat
 2. edit `index.html` and vibe code something beautiful
 3. push to Github and configure repo settings to publish a page from the main branch root folder
 
+## Example
+
+> I'm a software developer and I like reading HackerNews. There's an API to retrieve top stories which requires no authentication. Here's a link to the [API documentation](https://github.com/HackerNews/API/blob/master/README.md). Make a beautiful UI which allows me to see not only the top stories, but also the top comments for each story by expanding a UI element for the story. I should be able to click the story title to load the source. Display 10 stories per page and up to 3 top comments for a story when I expand the story's comments view.
+
 ## Files
 
 ### `elements.html`
